@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="consumeRestApp">
+    <head>
+		<meta charset="UTF-8">
+		<title>Extrato Transações - Cielo S/A</title>
+		<link rel="icon" href="./img/favicon.ico">
+		<link rel="stylesheet" href='./css/bootstrap.min.css'>
+		<script src='./js/main/angular.js'></script>
+        <script src='./js/main/angular-resource.js'></script>
+		<script src="./js/main/angular.min.js"></script>
+		<script src='./js/vendor/angular-locale_pt-br.js'></script>
+        <script src='../../src/app/controller/extract-controller.js'></script>
+    </head>
+	<body ng-controller='MainCtrl'>
+		<div>
+		  <table class="stripped table">
+			<thead>
+			  <tr>
+				<th>Data do lançamento</th>
+				<th>Descrição</th>
+			  	<th>Número</th>
+			  	<th>Situação</th>
+			  	<th>Data de confirmação</th>
+			  	<th>Dados bancários</th>
+				<th>Valor final</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr ng-repeat="item in listaControleLancamento">
+				<td>{{item.dateLancamentoContaCorrenteCliente | date:'dd/MM/yyyy'}}</td>
+                <td>{{item.lancamentoContaCorrenteCliente.nomeTipoOperacao}}</td>
+                <td>{{item.lancamentoContaCorrenteCliente.numeroRemessaBanco}}</td>
+                <td>{{item.lancamentoContaCorrenteCliente.nomeSituacaoRemessa}}</td>
+                <td>{{item.dataEfetivaLancamento}}</td>
+                <td>{{item.nomeBanco}} Ag {{item.lancamentoContaCorrenteCliente.dadosDomicilioBancario.numeroAgencia}} CC {{item.lancamentoContaCorrenteCliente.dadosDomicilioBancario.numeroContaCorrente}}</td>
+                <td>{{item.valorLancamentoRemessa | currency:'R$'}}</td>
+			  </tr>
+			</tbody>
+		  </table>
+		</div>
+    </body>
+</html>
